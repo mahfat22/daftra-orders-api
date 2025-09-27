@@ -29,21 +29,11 @@ Route::middleware(['auth:api'])->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
     });
 
-    Route::apiResource('orders', OrderController::class)->names([
-        'index' => 'orders.index',
-        'store' => 'orders.store',
-        'show' => 'orders.show',
-        'update' => 'orders.update',
-        'destroy' => 'orders.destroy',
-    ]);
+    Route::apiResource('orders', OrderController::class);
     Route::post('orders/{id}/confirm', [OrderController::class, 'confirm'])->name('orders.confirm');
     Route::post('orders/{id}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 
-    Route::apiResource('payments', PaymentController::class)->only(['index', 'show', 'store'])->names([
-        'index' => 'payments.index',
-        'store' => 'payments.store',
-        'show' => 'payments.show',
-    ]);
+    Route::apiResource('payments', PaymentController::class)->only(['index', 'show', 'store']);
     Route::post('payments/process', [PaymentController::class, 'store'])->name('payments.process');
     Route::get('orders/{orderId}/payments', [PaymentController::class, 'orderPayments'])->name('orders.payments');
 
