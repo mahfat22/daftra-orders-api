@@ -4,19 +4,11 @@ namespace App\Enums;
 
 enum PaymentMethod: string
 {
+    use EnumValues;
     case CREDIT_CARD = 'credit_card';
     case PAYPAL = 'paypal';
     case STRIPE = 'stripe';
 
-    /**
-     * Get all method values.
-     *
-     * @return array<string>
-     */
-    public static function values(): array
-    {
-        return array_column(self::cases(), 'value');
-    }
 
     /**
      * Get method labels for display.

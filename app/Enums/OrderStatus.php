@@ -4,19 +4,12 @@ namespace App\Enums;
 
 enum OrderStatus: string
 {
+    use EnumValues;
     case PENDING = 'pending';
     case CONFIRMED = 'confirmed';
     case CANCELLED = 'cancelled';
 
-    /**
-     * Get all status values.
-     *
-     * @return array<string>
-     */
-    public static function values(): array
-    {
-        return array_column(self::cases(), 'value');
-    }
+
 
     /**
      * Get status labels for display.
